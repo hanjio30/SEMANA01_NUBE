@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lima Times - El Diario Digital del Perú</title>
+    <title>Perú Diario - La voz del Perú</title>
     <style>
         * {
             margin: 0;
@@ -12,774 +12,1388 @@
         }
 
         :root {
-            --primary-red: #C41E3A;
-            --secondary-gold: #FFD700;
-            --dark-text: #1a1a1a;
-            --light-gray: #f8f8f8;
-            --medium-gray: #e5e5e5;
-            --border-gray: #ddd;
+            --primary-color: #C41E3A;
+            --secondary-color: #8B0000;
+            --accent-color: #FFD700;
+            --text-color: #333;
+            --light-bg: #F8F9FA;
+            --white: #FFFFFF;
+            --border-color: #E5E5E5;
+            --success-color: #28A745;
+            --warning-color: #FFC107;
         }
 
         body {
-            font-family: 'Georgia', 'Times New Roman', serif;
+            font-family: 'Georgia', serif;
             line-height: 1.6;
-            color: var(--dark-text);
-            background-color: white;
+            color: var(--text-color);
+            background-color: var(--white);
         }
 
-        /* Header */
-        .header-top {
-            background: var(--dark-text);
-            color: white;
+        /* Header Styles */
+        .top-bar {
+            background-color: var(--primary-color);
+            color: var(--white);
             padding: 8px 0;
             font-size: 12px;
         }
 
-        .header-top .container {
+        .top-bar-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
         }
 
-        .date-weather {
+        .header {
+            background-color: var(--white);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
             display: flex;
-            gap: 20px;
-        }
-
-        .user-actions a {
-            color: white;
-            text-decoration: none;
-            margin-left: 15px;
-        }
-
-        .main-header {
-            border-bottom: 3px solid var(--primary-red);
-            padding: 20px 0;
-        }
-
-        .header-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            text-align: center;
+            justify-content: space-between;
+            align-items: center;
         }
 
         .logo {
-            font-size: 48px;
+            font-size: 36px;
             font-weight: bold;
-            color: var(--primary-red);
+            color: var(--primary-color);
             text-decoration: none;
-            font-family: 'Old English Text MT', 'Times New Roman', serif;
-            letter-spacing: 2px;
-        }
-
-        .tagline {
-            font-size: 14px;
-            color: #666;
-            margin-top: 5px;
-            font-style: italic;
-        }
-
-        /* Navigation */
-        .nav-bar {
-            background: var(--light-gray);
-            border-bottom: 1px solid var(--border-gray);
-            padding: 15px 0;
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
         }
 
         .nav-menu {
             display: flex;
-            justify-content: center;
+            gap: 30px;
             list-style: none;
-            gap: 40px;
         }
 
         .nav-menu a {
             text-decoration: none;
-            color: var(--dark-text);
-            font-weight: 600;
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            padding: 10px 0;
-            border-bottom: 2px solid transparent;
-            transition: border-bottom 0.3s;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: color 0.3s;
         }
 
-        .nav-menu a:hover,
-        .nav-menu a.active {
-            border-bottom: 2px solid var(--primary-red);
+        .nav-menu a:hover {
+            color: var(--primary-color);
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--primary-color);
+            color: var(--white);
         }
 
         /* Main Content */
         .main-content {
             max-width: 1200px;
-            margin: 40px auto;
-            padding: 0 20px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .hero-section {
             display: grid;
             grid-template-columns: 2fr 1fr;
             gap: 40px;
+            margin-bottom: 50px;
         }
 
-        /* Featured Article */
         .featured-article {
-            border-bottom: 2px solid var(--medium-gray);
-            padding-bottom: 30px;
-            margin-bottom: 30px;
+            background-color: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
         }
 
-        .featured-article h1 {
-            font-size: 36px;
-            line-height: 1.2;
-            margin-bottom: 15px;
-            font-weight: 700;
-        }
-
-        .featured-article .meta {
-            color: #666;
-            font-size: 14px;
-            margin-bottom: 20px;
-            border-bottom: 1px solid var(--medium-gray);
-            padding-bottom: 10px;
+        .featured-article:hover {
+            transform: translateY(-5px);
         }
 
         .featured-article img {
             width: 100%;
             height: 300px;
             object-fit: cover;
+        }
+
+        .featured-content {
+            padding: 30px;
+        }
+
+        .featured-title {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: var(--text-color);
+            line-height: 1.3;
+        }
+
+        .featured-excerpt {
+            font-size: 16px;
+            color: #666;
             margin-bottom: 20px;
         }
 
-        .featured-article p {
-            font-size: 18px;
-            line-height: 1.7;
-            margin-bottom: 15px;
+        .article-meta {
+            display: flex;
+            gap: 20px;
+            font-size: 14px;
+            color: #888;
         }
 
-        /* Article Grid */
-        .articles-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
+        .sidebar {
+            display: flex;
+            flex-direction: column;
             gap: 30px;
-            margin-bottom: 40px;
         }
 
-        .article-card {
-            border-bottom: 1px solid var(--medium-gray);
-            padding-bottom: 20px;
+        .sidebar-section {
+            background-color: var(--light-bg);
+            border-radius: 10px;
+            padding: 25px;
         }
 
-        .article-card h3 {
+        .sidebar-title {
             font-size: 20px;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 10px;
+        }
+
+        .trending-item {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .trending-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .trending-number {
+            background-color: var(--primary-color);
+            color: var(--white);
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 12px;
+            flex-shrink: 0;
+        }
+
+        .trending-content h4 {
+            font-size: 14px;
+            margin-bottom: 5px;
+            line-height: 1.3;
+        }
+
+        .trending-content p {
+            font-size: 12px;
+            color: #666;
+        }
+
+        /* News Grid */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .news-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+
+        .news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .news-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .news-content {
+            padding: 25px;
+        }
+
+        .news-category {
+            background-color: var(--accent-color);
+            color: var(--text-color);
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        .news-title {
+            font-size: 18px;
+            font-weight: bold;
             margin-bottom: 10px;
             line-height: 1.3;
         }
 
-        .article-card h3 a {
-            color: var(--dark-text);
-            text-decoration: none;
-        }
-
-        .article-card h3 a:hover {
-            color: var(--primary-red);
-        }
-
-        .article-card .meta {
+        .news-excerpt {
             color: #666;
-            font-size: 12px;
-            margin-bottom: 10px;
-        }
-
-        .article-card p {
             font-size: 14px;
-            line-height: 1.5;
-        }
-
-        /* Sidebar */
-        .sidebar {
-            padding-left: 20px;
-        }
-
-        .sidebar-section {
-            margin-bottom: 40px;
-        }
-
-        .sidebar-section h3 {
-            font-size: 18px;
-            border-bottom: 2px solid var(--primary-red);
-            padding-bottom: 10px;
-            margin-bottom: 20px;
-        }
-
-        .subscription-box {
-            background: var(--primary-red);
-            color: white;
-            padding: 30px;
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .subscription-box h3 {
-            border: none;
-            color: white;
             margin-bottom: 15px;
         }
 
-        .subscription-box p {
-            margin-bottom: 20px;
-            font-size: 14px;
+        /* Plans Section */
+        .plans-section {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 15px;
+            padding: 50px;
+            margin: 50px 0;
+            color: var(--white);
+            text-align: center;
         }
 
-        .btn {
-            background: white;
-            color: var(--primary-red);
-            padding: 12px 24px;
-            text-decoration: none;
+        .plans-title {
+            font-size: 32px;
             font-weight: bold;
-            border-radius: 4px;
-            display: inline-block;
-            transition: all 0.3s;
+            margin-bottom: 20px;
         }
 
-        .btn:hover {
-            background: var(--secondary-gold);
-            color: var(--dark-text);
+        .plans-subtitle {
+            font-size: 18px;
+            margin-bottom: 40px;
+            opacity: 0.9;
         }
 
-        .popular-articles {
+        .plans-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .plan-card {
+            background-color: var(--white);
+            color: var(--text-color);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: left;
+            transition: transform 0.3s;
+        }
+
+        .plan-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .plan-name {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .plan-price {
+            font-size: 36px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .plan-features {
             list-style: none;
+            margin-bottom: 30px;
         }
 
-        .popular-articles li {
-            padding: 10px 0;
-            border-bottom: 1px solid var(--medium-gray);
-            font-size: 14px;
+        .plan-features li {
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border-color);
         }
 
-        .popular-articles li:last-child {
+        .plan-features li:last-child {
             border-bottom: none;
         }
 
-        .popular-articles a {
-            color: var(--dark-text);
-            text-decoration: none;
+        .plan-features li::before {
+            content: "✓";
+            color: var(--success-color);
+            font-weight: bold;
+            margin-right: 10px;
         }
 
-        .popular-articles a:hover {
-            color: var(--primary-red);
-        }
-
-        /* Subscription Plans Modal */
+        /* Modal Styles */
         .modal {
             display: none;
             position: fixed;
-            z-index: 1000;
+            z-index: 2000;
             left: 0;
             top: 0;
             width: 100%;
             height: 100%;
             background-color: rgba(0,0,0,0.5);
+            backdrop-filter: blur(5px);
         }
 
         .modal-content {
-            background-color: white;
+            background-color: var(--white);
             margin: 5% auto;
             padding: 40px;
+            border-radius: 15px;
             width: 90%;
-            max-width: 800px;
-            border-radius: 8px;
+            max-width: 500px;
             position: relative;
+            animation: modalSlideIn 0.3s ease-out;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
             position: absolute;
             right: 20px;
-            top: 15px;
-            font-size: 30px;
-            cursor: pointer;
+            top: 20px;
         }
 
-        .plans-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-            margin-top: 30px;
+        .close:hover {
+            color: var(--primary-color);
         }
 
-        .plan-card {
-            border: 2px solid var(--medium-gray);
-            padding: 30px 20px;
-            text-align: center;
-            border-radius: 8px;
-            transition: all 0.3s;
-        }
-
-        .plan-card.featured {
-            border-color: var(--primary-red);
-            background: var(--light-gray);
-        }
-
-        .plan-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-        }
-
-        .plan-card h4 {
-            font-size: 24px;
-            margin-bottom: 10px;
-            color: var(--primary-red);
-        }
-
-        .plan-card .price {
-            font-size: 36px;
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-
-        .plan-card .period {
-            color: #666;
-            font-size: 14px;
+        .form-group {
             margin-bottom: 20px;
         }
 
-        .plan-card ul {
-            list-style: none;
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text-color);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .admin-panel {
+            display: none;
+            background-color: var(--light-bg);
+            border-radius: 15px;
+            padding: 30px;
+            margin-top: 30px;
+        }
+
+        .admin-actions {
+            display: flex;
+            gap: 15px;
             margin-bottom: 30px;
-            text-align: left;
+            flex-wrap: wrap;
         }
 
-        .plan-card li {
-            padding: 8px 0;
-            border-bottom: 1px solid var(--medium-gray);
-            font-size: 14px;
+        .news-management {
+            background-color: var(--white);
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 25px;
         }
 
-        .plan-card li::before {
-            content: "✓ ";
-            color: var(--primary-red);
-            font-weight: bold;
+        .user-info {
+            background: linear-gradient(135deg, var(--accent-color), #FFA500);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .user-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            color: var(--white);
+            margin: 0 auto 15px;
         }
 
         /* Footer */
         .footer {
-            background: var(--dark-text);
-            color: white;
-            padding: 40px 0;
-            margin-top: 60px;
+            background-color: var(--text-color);
+            color: var(--white);
+            padding: 50px 0;
+            margin-top: 80px;
         }
 
-        .footer-container {
+        .footer-content {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
-        }
-
-        .footer-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 40px;
-            margin-bottom: 30px;
         }
 
-        .footer-section h4 {
-            color: var(--secondary-gold);
-            margin-bottom: 15px;
-            font-size: 16px;
+        .footer-section h3 {
+            color: var(--accent-color);
+            margin-bottom: 20px;
+            font-size: 20px;
         }
 
         .footer-section ul {
             list-style: none;
         }
 
-        .footer-section a {
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section ul li a {
             color: #ccc;
             text-decoration: none;
-            font-size: 14px;
-            display: block;
-            padding: 5px 0;
+            transition: color 0.3s;
         }
 
-        .footer-section a:hover {
-            color: var(--secondary-gold);
+        .footer-section ul li a:hover {
+            color: var(--accent-color);
         }
 
-        .footer-bottom {
-            border-top: 1px solid #444;
-            padding-top: 20px;
-            text-align: center;
-            font-size: 12px;
-            color: #888;
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 20px;
+            border-radius: 8px;
+            color: var(--white);
+            font-weight: 500;
+            z-index: 3000;
+            opacity: 0;
+            transform: translateX(100%);
+            transition: all 0.3s;
         }
 
-        /* Responsive Design */
+        .notification.success {
+            background-color: var(--success-color);
+        }
+
+        .notification.show {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Responsive */
         @media (max-width: 768px) {
-            .main-content {
-                grid-template-columns: 1fr;
-                gap: 30px;
-            }
-
-            .articles-grid {
+            .hero-section {
                 grid-template-columns: 1fr;
             }
-
+            
             .nav-menu {
-                flex-wrap: wrap;
-                gap: 20px;
+                display: none;
             }
-
-            .logo {
-                font-size: 32px;
-            }
-
+            
             .plans-grid {
                 grid-template-columns: 1fr;
             }
-
-            .footer-grid {
-                grid-template-columns: repeat(2, 1fr);
+            
+            .admin-actions {
+                flex-direction: column;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Header Top -->
-    <div class="header-top">
-        <div class="container">
-            <div class="date-weather">
-                <span id="current-date"></span>
-                <span>Lima, Perú | 22°C</span>
-            </div>
-            <div class="user-actions">
-                <a href="#" onclick="openModal()">Suscríbete</a>
-                <a href="#">Inicia Sesión</a>
-                <a href="#">Registro</a>
-            </div>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="top-bar-content">
+            <div>🌡️ Lima 22°C | 📅 <span id="current-date"></span></div>
+            <div>🔥 ÚLTIMA HORA: Síguenos para las noticias más importantes del Perú</div>
         </div>
     </div>
 
-    <!-- Main Header -->
-    <header class="main-header">
-        <div class="header-container">
-            <a href="#" class="logo">Lima Times</a>
-            <p class="tagline">"La Verdad que Ilumina el Perú"</p>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <a href="#" class="logo">Perú Diario</a>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="#" onclick="showSection('home')">Inicio</a></li>
+                    <li><a href="#" onclick="showSection('politics')">Política</a></li>
+                    <li><a href="#" onclick="showSection('economy')">Economía</a></li>
+                    <li><a href="#" onclick="showSection('sports')">Deportes</a></li>
+                    <li><a href="#" onclick="showSection('culture')">Cultura</a></li>
+                    <li><a href="#" onclick="showPlans()">Suscríbete</a></li>
+                </ul>
+            </nav>
+            <div class="auth-buttons">
+                <a href="#" class="btn btn-secondary" onclick="openModal('loginModal')">Iniciar Sesión</a>
+                <a href="#" class="btn btn-primary" onclick="openModal('registerModal')">Registrarse</a>
+            </div>
         </div>
     </header>
 
-    <!-- Navigation -->
-    <nav class="nav-bar">
-        <div class="nav-container">
-            <ul class="nav-menu">
-                <li><a href="#" class="active">Inicio</a></li>
-                <li><a href="#">Política</a></li>
-                <li><a href="#">Economía</a></li>
-                <li><a href="#">Deportes</a></li>
-                <li><a href="#">Cultura</a></li>
-                <li><a href="#">Lima</a></li>
-                <li><a href="#">Regiones</a></li>
-                <li><a href="#">Internacional</a></li>
-                <li><a href="#">Opinión</a></li>
-            </ul>
-        </div>
-    </nav>
-
     <!-- Main Content -->
-    <div class="main-content">
-        <main>
-            <!-- Featured Article -->
+    <main class="main-content">
+        <!-- Hero Section -->
+        <section class="hero-section">
             <article class="featured-article">
-                <h1>Nuevo Metro de Lima: Línea 3 Promete Revolucionar el Transporte Público</h1>
-                <div class="meta">
-                    Por María Gonzales | 9 de Septiembre, 2025 | Lima, Perú
-                </div>
-                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDgwMCAzMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI4MDAiIGhlaWdodD0iMzAwIiBmaWxsPSIjZjBmMGYwIi8+CjxwYXRoIGQ9Ik0xMDAgMjUwSDcwMFYyMDBIMTAwVjI1MFoiIGZpbGw9IiNDNDFFM0EiLz4KPHN2ZyB4PSIzNzUiIHk9IjEyNSIgd2lkdGg9IjUwIiBoZWlnaHQ9IjUwIiBmaWxsPSIjQzQxRTNBIj4KICA8cmVjdCB3aWR0aD0iNTAiIGhlaWdodD0iNTAiIHJ4PSIyNSIvPgo8L3N2Zz4KPHRleHQgeD0iNDAwIiB5PSIxNjAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNDNDFFM0EiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxOCI+TUVUUk8gTElNQTwvdGV4dD4KPC9zdmc+" alt="Metro de Lima Línea 3">
-                <p>La construcción de la Línea 3 del Metro de Lima marca un hito histórico en el desarrollo del transporte público de la capital peruana. Con una inversión de más de 5 mil millones de dólares, este proyecto conectará 35 estaciones desde el Callao hasta Ate, beneficiando directamente a más de 2 millones de limeños.</p>
-                <p>El proyecto, que contará con tecnología de punta importada desde Alemania y Japón, promete reducir los tiempos de viaje en un 40% y las emisiones de CO2 en un 30%. La obra, que iniciará en octubre de 2025, generará más de 15,000 empleos directos durante su construcción.</p>
-            </article>
-
-            <!-- Articles Grid -->
-            <div class="articles-grid">
-                <article class="article-card">
-                    <h3><a href="#">Exportaciones de Café Peruano Alcanzan Récord Histórico</a></h3>
-                    <div class="meta">Economía | Hace 2 horas</div>
-                    <p>Las exportaciones de café peruano registraron un crecimiento del 15% en el primer semestre del año, posicionando al Perú como el segundo exportador de café orgánico en América Latina.</p>
-                </article>
-
-                <article class="article-card">
-                    <h3><a href="#">Universitario Clasifica a Semifinales de Copa Libertadores</a></h3>
-                    <div class="meta">Deportes | Hace 4 horas</div>
-                    <p>La "U" logró una histórica victoria 2-1 contra Palmeiras en el Estadio Nacional, asegurando su pase a las semifinales de la Copa Libertadores después de 22 años.</p>
-                </article>
-
-                <article class="article-card">
-                    <h3><a href="#">Machu Picchu Recibe Nuevas Medidas de Conservación</a></h3>
-                    <div class="meta">Cultura | Hace 6 horas</div>
-                    <p>El Ministerio de Cultura anunció una inversión de 50 millones de soles para implementar nuevas tecnologías de conservación en la ciudadela inca más visitada del mundo.</p>
-                </article>
-
-                <article class="article-card">
-                    <h3><a href="#">Congreso Debate Reforma Tributaria para PyMEs</a></h3>
-                    <div class="meta">Política | Hace 8 horas</div>
-                    <p>La propuesta busca reducir la carga tributaria a las pequeñas y medianas empresas en un 25%, con el objetivo de formalizar la economía y generar más empleos.</p>
-                </article>
-            </div>
-        </main>
-
-        <aside class="sidebar">
-            <!-- Subscription Box -->
-            <div class="subscription-box">
-                <h3>Únete a Lima Times</h3>
-                <p>Acceso ilimitado a noticias de calidad, análisis profundo y contenido exclusivo del Perú y el mundo.</p>
-                <a href="#" onclick="openModal()" class="btn">Suscríbete Ahora</a>
-            </div>
-
-            <!-- Popular Articles -->
-            <div class="sidebar-section">
-                <h3>Más Leídas</h3>
-                <ul class="popular-articles">
-                    <li><a href="#">Crisis política: Congreso evalúa moción de censura</a></li>
-                    <li><a href="#">Dólar alcanza nuevo máximo histórico en Perú</a></li>
-                    <li><a href="#">Descubren nueva especie de rana en Amazonía peruana</a></li>
-                    <li><a href="#">Lima será sede del próximo Foro Económico Mundial</a></li>
-                    <li><a href="#">Gastronomía peruana conquista mercado asiático</a></li>
-                </ul>
-            </div>
-
-            <!-- Weather Widget -->
-            <div class="sidebar-section">
-                <h3>Clima en Lima</h3>
-                <div style="background: var(--light-gray); padding: 20px; text-align: center;">
-                    <div style="font-size: 24px; margin-bottom: 10px;">22°C</div>
-                    <div style="color: #666;">Parcialmente nublado</div>
-                    <div style="margin-top: 10px; font-size: 12px; color: #888;">
-                        Máx: 25°C | Mín: 18°C
+                <img src="https://images.unsplash.com/photo-1586339949916-3e9457bef6d3?w=800&h=400&fit=crop" alt="Noticia Principal">
+                <div class="featured-content">
+                    <h1 class="featured-title">Perú avanza hacia la digitalización con nuevas políticas tecnológicas</h1>
+                    <p class="featured-excerpt">El gobierno peruano anuncia un ambicioso plan de transformación digital que beneficiará a millones de ciudadanos en todo el país, mejorando el acceso a servicios públicos y promoviendo la innovación.</p>
+                    <div class="article-meta">
+                        <span>📅 Hace 2 horas</span>
+                        <span>👤 María González</span>
+                        <span>💬 234 comentarios</span>
                     </div>
                 </div>
-            </div>
-        </aside>
-    </div>
+            </article>
 
-    <!-- Subscription Modal -->
-    <div id="subscriptionModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
-            <h2 style="text-align: center; margin-bottom: 20px; color: var(--primary-red);">Planes de Suscripción</h2>
-            <p style="text-align: center; margin-bottom: 30px;">Elige el plan que mejor se adapte a tus necesidades</p>
+            <aside class="sidebar">
+                <div class="sidebar-section">
+                    <h2 class="sidebar-title">🔥 Tendencias</h2>
+                    <div class="trending-item">
+                        <div class="trending-number">1</div>
+                        <div class="trending-content">
+                            <h4>Nueva ley de trabajo remoto</h4>
+                            <p>Congreso aprueba flexibilidad laboral</p>
+                        </div>
+                    </div>
+                    <div class="trending-item">
+                        <div class="trending-number">2</div>
+                        <div class="trending-content">
+                            <h4>Selección peruana clasifica</h4>
+                            <p>Victoria histórica ante Brasil</p>
+                        </div>
+                    </div>
+                    <div class="trending-item">
+                        <div class="trending-number">3</div>
+                        <div class="trending-content">
+                            <h4>Nuevo yacimiento de oro</h4>
+                            <p>Descubrimiento en Cajamarca</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sidebar-section">
+                    <h2 class="sidebar-title">📊 Tu Plan Actual</h2>
+                    <div id="user-plan-info">
+                        <p>👤 <strong>Usuario Visitante</strong></p>
+                        <p>📰 Acceso limitado a noticias</p>
+                        <a href="#" class="btn btn-primary" onclick="showPlans()" style="width: 100%; justify-content: center; margin-top: 15px;">Suscribirse Ahora</a>
+                    </div>
+                </div>
+            </aside>
+        </section>
+
+        <!-- News Grid -->
+        <section class="news-grid" id="news-container">
+            <!-- News will be loaded here dynamically -->
+        </section>
+
+        <!-- Plans Section -->
+        <section class="plans-section" id="plans-section">
+            <h2 class="plans-title">Planes de Suscripción</h2>
+            <p class="plans-subtitle">Elige el plan perfecto para mantenerte informado</p>
             
             <div class="plans-grid">
                 <div class="plan-card">
-                    <h4>Básico</h4>
-                    <div class="price">S/. 15</div>
-                    <div class="period">por mes</div>
-                    <ul>
-                        <li>Acceso ilimitado a noticias</li>
-                        <li>Newsletter diario</li>
-                        <li>Archivo de últimos 30 días</li>
-                        <li>Sin anuncios</li>
+                    <h3 class="plan-name">🆓 Básico</h3>
+                    <div class="plan-price">Gratis</div>
+                    <ul class="plan-features">
+                        <li>5 artículos por día</li>
+                        <li>Noticias básicas</li>
+                        <li>Acceso a archivo de 7 días</li>
+                        <li>Newsletter semanal</li>
                     </ul>
-                    <a href="#" class="btn">Elegir Plan</a>
-                </div>
-
-                <div class="plan-card featured">
-                    <h4>Premium</h4>
-                    <div class="price">S/. 25</div>
-                    <div class="period">por mes</div>
-                    <ul>
-                        <li>Todo lo del plan Básico</li>
-                        <li>Análisis exclusivos</li>
-                        <li>Podcasts premium</li>
-                        <li>Eventos exclusivos</li>
-                        <li>Archivo completo</li>
-                    </ul>
-                    <a href="#" class="btn">Elegir Plan</a>
+                    <button class="btn btn-secondary" style="width: 100%; justify-content: center;">Plan Actual</button>
                 </div>
 
                 <div class="plan-card">
-                    <h4>Empresarial</h4>
-                    <div class="price">S/. 50</div>
-                    <div class="period">por mes</div>
-                    <ul>
-                        <li>Todo lo del plan Premium</li>
-                        <li>5 cuentas de usuario</li>
-                        <li>Reportes de mercado</li>
-                        <li>Consultoría personalizada</li>
-                        <li>API de noticias</li>
+                    <h3 class="plan-name">⭐ Premium</h3>
+                    <div class="plan-price">S/ 29<span style="font-size: 16px;">/mes</span></div>
+                    <ul class="plan-features">
+                        <li>Artículos ilimitados</li>
+                        <li>Contenido exclusivo</li>
+                        <li>Análisis en profundidad</li>
+                        <li>Newsletter diario</li>
+                        <li>Sin publicidad</li>
+                        <li>Acceso móvil prioritario</li>
                     </ul>
-                    <a href="#" class="btn">Elegir Plan</a>
+                    <button class="btn btn-primary" onclick="subscribeToPlan('premium')" style="width: 100%; justify-content: center;">Suscribirse</button>
+                </div>
+
+                <div class="plan-card">
+                    <h3 class="plan-name">💎 Corporativo</h3>
+                    <div class="plan-price">S/ 199<span style="font-size: 16px;">/mes</span></div>
+                    <ul class="plan-features">
+                        <li>Todo del plan Premium</li>
+                        <li>Múltiples usuarios (hasta 50)</li>
+                        <li>Panel de administración</li>
+                        <li>Publicar noticias propias</li>
+                        <li>Analytics avanzados</li>
+                        <li>Soporte 24/7</li>
+                        <li>API personalizada</li>
+                    </ul>
+                    <button class="btn btn-primary" onclick="subscribeToPlan('corporate')" style="width: 100%; justify-content: center;">Contactar Ventas</button>
                 </div>
             </div>
+        </section>
 
-            <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid var(--medium-gray); text-align: center; font-size: 14px; color: #666;">
-                <p><strong>Servicios Adicionales Exclusivos:</strong></p>
-                <p>• App móvil Lima Times (iOS/Android) • Juegos y crucigramas diarios • Club de lectura virtual • Masterclasses con expertos peruanos</p>
+        <!-- Admin Panel (hidden by default) -->
+        <div class="admin-panel" id="admin-panel">
+            <div class="user-info">
+                <div class="user-avatar" id="user-avatar">👤</div>
+                <h3 id="user-name">Administrador</h3>
+                <p id="user-role">Panel de Administración</p>
+            </div>
+
+            <div class="admin-actions">
+                <button class="btn btn-primary" onclick="openModal('addNewsModal')">➕ Agregar Noticia</button>
+                <button class="btn btn-secondary" onclick="viewAnalytics()">📊 Analytics</button>
+                <button class="btn btn-secondary" onclick="manageUsers()">👥 Gestionar Usuarios</button>
+                <button class="btn btn-secondary" onclick="moderateComments()">💬 Moderar Comentarios</button>
+            </div>
+
+            <div class="news-management">
+                <h3>📰 Gestión de Noticias</h3>
+                <div id="admin-news-list">
+                    <!-- Admin news list will be populated here -->
+                </div>
             </div>
         </div>
-    </div>
+    </main>
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-grid">
-                <div class="footer-section">
-                    <h4>Secciones</h4>
-                    <ul>
-                        <li><a href="#">Política</a></li>
-                        <li><a href="#">Economía</a></li>
-                        <li><a href="#">Deportes</a></li>
-                        <li><a href="#">Cultura</a></li>
-                        <li><a href="#">Internacional</a></li>
-                        <li><a href="#">Tecnología</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Servicios</h4>
-                    <ul>
-                        <li><a href="#" onclick="openModal()">Suscripciones</a></li>
-                        <li><a href="#">Newsletter</a></li>
-                        <li><a href="#">App Móvil</a></li>
-                        <li><a href="#">Podcasts</a></li>
-                        <li><a href="#">Archivo Digital</a></li>
-                        <li><a href="#">RSS</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Empresa</h4>
-                    <ul>
-                        <li><a href="#">Sobre Nosotros</a></li>
-                        <li><a href="#">Trabaja con Nosotros</a></li>
-                        <li><a href="#">Contacto</a></li>
-                        <li><a href="#">Publicidad</a></li>
-                        <li><a href="#">Inversores</a></li>
-                        <li><a href="#">Ética Periodística</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Legal</h4>
-                    <ul>
-                        <li><a href="#">Términos de Uso</a></li>
-                        <li><a href="#">Política de Privacidad</a></li>
-                        <li><a href="#">Cookies</a></li>
-                        <li><a href="#">Derechos de Autor</a></li>
-                        <li><a href="#">Accesibilidad</a></li>
-                    </ul>
-                </div>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Perú Diario</h3>
+                <p>La fuente más confiable de noticias del Perú. Comprometidos con la verdad y la excelencia periodística desde 2025.</p>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 Lima Times. Todos los derechos reservados. | Fundado en Lima, Perú</p>
+            <div class="footer-section">
+                <h3>Secciones</h3>
+                <ul>
+                    <li><a href="#">Política</a></li>
+                    <li><a href="#">Economía</a></li>
+                    <li><a href="#">Deportes</a></li>
+                    <li><a href="#">Cultura</a></li>
+                    <li><a href="#">Internacional</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Servicios</h3>
+                <ul>
+                    <li><a href="#">Suscripciones</a></li>
+                    <li><a href="#">Newsletter</a></li>
+                    <li><a href="#">Archivo</a></li>
+                    <li><a href="#">API</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contacto</h3>
+                <ul>
+                    <li><a href="#">📧 info@perudiario.com</a></li>
+                    <li><a href="#">📞 +51 1 234-5678</a></li>
+                    <li><a href="#">📍 Lima, Perú</a></li>
+                    <li><a href="#">🐦 @PeruDiario</a></li>
+                </ul>
             </div>
         </div>
     </footer>
 
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Iniciar Sesión</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="loginEmail">Email:</label>
+                    <input type="email" id="loginEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Contraseña:</label>
+                    <input type="password" id="loginPassword" required>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">Iniciar Sesión</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Registrarse</h2>
+            <form id="registerForm">
+                <div class="form-group">
+                    <label for="registerName">Nombre completo:</label>
+                    <input type="text" id="registerName" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerEmail">Email:</label>
+                    <input type="email" id="registerEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerPassword">Contraseña:</label>
+                    <input type="password" id="registerPassword" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerPlan">Plan:</label>
+                    <select id="registerPlan" required>
+                        <option value="free">Básico (Gratis)</option>
+                        <option value="premium">Premium (S/ 29/mes)</option>
+                        <option value="corporate">Corporativo (S/ 199/mes)</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">Registrarse</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add News Modal -->
+    <div id="addNewsModal" class="modal">
+        <div class="modal-content" style="max-width: 700px;">
+            <span class="close">&times;</span>
+            <h2>➕ Agregar Nueva Noticia</h2>
+            <form id="addNewsForm">
+                <div class="form-group">
+                    <label for="newsTitle">Título:</label>
+                    <input type="text" id="newsTitle" required>
+                </div>
+                <div class="form-group">
+                    <label for="newsCategory">Categoría:</label>
+                    <select id="newsCategory" required>
+                        <option value="politica">Política</option>
+                        <option value="economia">Economía</option>
+                        <option value="deportes">Deportes</option>
+                        <option value="cultura">Cultura</option>
+                        <option value="internacional">Internacional</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="newsExcerpt">Resumen:</label>
+                    <textarea id="newsExcerpt" rows="3" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="newsContent">Contenido completo:</label>
+                    <textarea id="newsContent" rows="8" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="newsImage">URL de imagen:</label>
+                    <input type="url" id="newsImage" required>
+                </div>
+                <div class="form-group">
+                    <label for="newsAuthor">Autor:</label>
+                    <input type="text" id="newsAuthor" required>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">Publicar Noticia</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Notification -->
+    <div id="notification" class="notification"></div>
+
     <script>
-        // Set current date
-        function updateDate() {
+        // Database simulation (In-memory storage)
+        let database = {
+            users: [
+                {
+                    id: 1,
+                    name: "Admin Principal",
+                    email: "admin@perudiario.com",
+                    password: "admin123",
+                    role: "admin",
+                    plan: "corporate",
+                    avatar: "👨‍💼"
+                },
+                {
+                    id: 2,
+                    name: "María García",
+                    email: "maria@gmail.com",
+                    password: "maria123",
+                    role: "user",
+                    plan: "premium",
+                    avatar: "👩"
+                }
+            ],
+            news: [
+                {
+                    id: 1,
+                    title: "Perú implementa nueva reforma educativa digital",
+                    category: "educacion",
+                    excerpt: "El Ministerio de Educación anuncia la digitalización completa del sistema educativo peruano, beneficiando a más de 8 millones de estudiantes.",
+                    content: "En una decisión histórica, el Ministerio de Educación del Perú ha anunciado la implementación de una reforma educativa completamente digital que transformará la manera en que los estudiantes peruanos acceden al conocimiento. Esta iniciativa, que requiere una inversión de S/ 2.5 mil millones, incluye la distribución de tablets a todos los estudiantes de educación pública, la capacitación de 300,000 docentes en tecnologías digitales y la creación de una plataforma educativa nacional. El ministro de Educación, en rueda de prensa, destacó que esta reforma posicionará al Perú como líder en educación digital en América Latina.",
+                    image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&h=400&fit=crop",
+                    author: "Carlos Mendoza",
+                    date: new Date(Date.now() - 3600000 * 2), // 2 hours ago
+                    views: 15420,
+                    comments: 234,
+                    featured: true
+                },
+                {
+                    id: 2,
+                    title: "Economía peruana crece 4.2% en el último trimestre",
+                    category: "economia",
+                    excerpt: "El INEI reporta un crecimiento económico sostenido impulsado por el sector minero y tecnológico.",
+                    content: "El Instituto Nacional de Estadística e Informática (INEI) ha publicado cifras alentadoras sobre el crecimiento de la economía peruana. Durante el último trimestre, el país experimentó un crecimiento del 4.2%, superando las expectativas de los analistas que proyectaban un 3.8%. Este crecimiento se debe principalmente al aumento en la producción minera, especialmente de cobre y oro, así como al floreciente sector tecnológico. Las exportaciones no tradicionales también mostraron un incremento del 12%, consolidando la recuperación económica post-pandemia.",
+                    image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&h=400&fit=crop",
+                    author: "Ana Rodríguez",
+                    date: new Date(Date.now() - 3600000 * 4), // 4 hours ago
+                    views: 8750,
+                    comments: 156
+                },
+                {
+                    id: 3,
+                    title: "Selección Peruana clasifica al Mundial con victoria histórica",
+                    category: "deportes",
+                    excerpt: "La bicolor logra una victoria épica 2-1 contra Brasil en el Estadio Nacional, asegurando su pase al Mundial.",
+                    content: "En una noche mágica en el Estadio Nacional, la Selección Peruana escribió una nueva página dorada en su historia al vencer 2-1 a Brasil y clasificar directamente al próximo Mundial de Fútbol. Los goles de Paolo Guerrero y Gianluca Lapadula en el segundo tiempo dieron vuelta un marcador adverso y desataron la celebración de todo un país. Con esta victoria, Perú se convierte en la quinta selección sudamericana en clasificar al torneo. El técnico Ricardo Gareca expresó su orgullo por el equipo y dedicó el triunfo a todos los peruanos.",
+                    image: "https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?w=800&h=400&fit=crop",
+                    author: "Miguel Torres",
+                    date: new Date(Date.now() - 3600000 * 6), // 6 hours ago
+                    views: 25300,
+                    comments: 892
+                },
+                {
+                    id: 4,
+                    title: "Descubren nuevo complejo arqueológico en Cusco",
+                    category: "cultura",
+                    excerpt: "Arqueólogos peruanos encuentran ruinas preincaicas que podrían reescribir la historia de la región.",
+                    content: "Un equipo de arqueólogos peruanos ha realizado un descubrimiento extraordinario en la región de Cusco: un complejo arqueológico preincaico de más de 1,200 años de antigüedad que podría cambiar nuestra comprensión de las civilizaciones andinas. El sitio, denominado 'Qhapaq Ñan Perdido', incluye templos, observatorios astronómicos y un sistema de canales de irrigación sorprendentemente avanzado. Los investigadores creen que este complejo fue un importante centro ceremonial y administrativo de la cultura Wari. El Ministerio de Cultura ya ha iniciado los procedimientos para declarar el sitio como Patrimonio Cultural de la Nación.",
+                    image: "https://images.unsplash.com/photo-1526392060635-9d6019884377?w=800&h=400&fit=crop",
+                    author: "Elena Vargas",
+                    date: new Date(Date.now() - 3600000 * 8), // 8 hours ago
+                    views: 12100,
+                    comments: 298
+                },
+                {
+                    id: 5,
+                    title: "Lima se convierte en la capital gastronómica de Sudamérica",
+                    category: "cultura",
+                    excerpt: "La capital peruana recibe reconocimiento internacional por su innovadora escena culinaria.",
+                    content: "Lima ha sido oficialmente reconocida como la Capital Gastronómica de Sudamérica por la Organización Mundial del Turismo. Este reconocimiento se debe al extraordinario desarrollo de su escena culinaria, que combina técnicas ancestrales con innovación contemporánea. La ciudad alberga cinco de los 50 mejores restaurantes del mundo según la lista World's 50 Best, incluyendo Central, Maido y Astrid y Gastón. El alcalde de Lima anunció la creación de una ruta gastronómica oficial que incluirá desde huariques tradicionales hasta restaurantes de alta cocina, consolidando el turismo gastronómico como uno de los principales atractivos del país.",
+                    image: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&h=400&fit=crop",
+                    author: "Roberto Silva",
+                    date: new Date(Date.now() - 3600000 * 12), // 12 hours ago
+                    views: 18750,
+                    comments: 445
+                },
+                {
+                    id: 6,
+                    title: "Startup peruana desarrolla tecnología para purificar agua",
+                    category: "tecnologia",
+                    excerpt: "Innovación nacional crea sistema que purifica agua usando energía solar, beneficiando comunidades rurales.",
+                    content: "Una startup peruana llamada 'AquaPura Tech' ha desarrollado una revolucionaria tecnología que purifica agua utilizando únicamente energía solar. El sistema, diseñado por ingenieros de la Universidad Nacional de Ingeniería, puede procesar hasta 1,000 litros de agua por día y eliminar el 99.9% de bacterias y virus. La tecnología ya está siendo implementada en 15 comunidades rurales de Ayacucho y Huancavelica, beneficiando a más de 5,000 personas. La empresa ha recibido inversión de fondos internacionales y planea expandirse a otros países de América Latina. El Ministerio de Salud ha validado la tecnología y considera implementarla en el programa nacional de acceso al agua potable.",
+                    image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=400&fit=crop",
+                    author: "Lucia Morales",
+                    date: new Date(Date.now() - 3600000 * 16), // 16 hours ago
+                    views: 9200,
+                    comments: 178
+                }
+            ],
+            subscriptions: [],
+            comments: []
+        };
+
+        // Current user state
+        let currentUser = null;
+
+        // Initialize the application
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCurrentDate();
+            loadNews();
+            setupEventListeners();
+            updateUI();
+        });
+
+        // Update current date
+        function updateCurrentDate() {
+            const now = new Date();
             const options = { 
+                weekday: 'long', 
                 year: 'numeric', 
                 month: 'long', 
                 day: 'numeric',
-                weekday: 'long'
+                timeZone: 'America/Lima'
             };
-            const today = new Date().toLocaleDateString('es-PE', options);
-            document.getElementById('current-date').textContent = today;
+            document.getElementById('current-date').textContent = now.toLocaleDateString('es-PE', options);
         }
 
-        // Modal functions
-        function openModal() {
-            document.getElementById('subscriptionModal').style.display = 'block';
-            document.body.style.overflow = 'hidden';
+        // Setup event listeners
+        function setupEventListeners() {
+            // Modal close buttons
+            document.querySelectorAll('.close').forEach(closeBtn => {
+                closeBtn.addEventListener('click', function() {
+                    this.closest('.modal').style.display = 'none';
+                });
+            });
+
+            // Click outside modal to close
+            window.addEventListener('click', function(event) {
+                if (event.target.classList.contains('modal')) {
+                    event.target.style.display = 'none';
+                }
+            });
+
+            // Form submissions
+            document.getElementById('loginForm').addEventListener('submit', handleLogin);
+            document.getElementById('registerForm').addEventListener('submit', handleRegister);
+            document.getElementById('addNewsForm').addEventListener('submit', handleAddNews);
         }
 
-        function closeModal() {
-            document.getElementById('subscriptionModal').style.display = 'none';
-            document.body.style.overflow = 'auto';
+        // Load and display news
+        function loadNews() {
+            const newsContainer = document.getElementById('news-container');
+            const regularNews = database.news.filter(news => !news.featured);
+            
+            newsContainer.innerHTML = regularNews.map(news => `
+                <article class="news-card" onclick="readArticle(${news.id})">
+                    <img src="${news.image}" alt="${news.title}" onerror="this.src='https://images.unsplash.com/photo-1586339949916-3e9457bef6d3?w=800&h=400&fit=crop'">
+                    <div class="news-content">
+                        <span class="news-category">${getCategoryName(news.category)}</span>
+                        <h3 class="news-title">${news.title}</h3>
+                        <p class="news-excerpt">${news.excerpt}</p>
+                        <div class="article-meta">
+                            <span>📅 ${getTimeAgo(news.date)}</span>
+                            <span>👤 ${news.author}</span>
+                            <span>👁️ ${news.views?.toLocaleString() || 0}</span>
+                            <span>💬 ${news.comments?.toLocaleString() || 0}</span>
+                        </div>
+                    </div>
+                </article>
+            `).join('');
         }
 
-        // Close modal when clicking outside
-        window.onclick = function(event) {
-            const modal = document.getElementById('subscriptionModal');
-            if (event.target == modal) {
-                closeModal();
+        // Get category name in Spanish
+        function getCategoryName(category) {
+            const categories = {
+                'politica': 'Política',
+                'economia': 'Economía',
+                'deportes': 'Deportes',
+                'cultura': 'Cultura',
+                'educacion': 'Educación',
+                'tecnologia': 'Tecnología',
+                'internacional': 'Internacional'
+            };
+            return categories[category] || category;
+        }
+
+        // Calculate time ago
+        function getTimeAgo(date) {
+            const now = new Date();
+            const diff = now - new Date(date);
+            const hours = Math.floor(diff / (1000 * 60 * 60));
+            const days = Math.floor(hours / 24);
+            
+            if (days > 0) {
+                return `Hace ${days} día${days > 1 ? 's' : ''}`;
+            } else if (hours > 0) {
+                return `Hace ${hours} hora${hours > 1 ? 's' : ''}`;
+            } else {
+                return 'Hace unos minutos';
             }
         }
 
-        // Smooth scrolling for navigation
-        document.addEventListener('DOMContentLoaded', function() {
-            updateDate();
+        // Open modal
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'block';
+        }
+
+        // Show notification
+        function showNotification(message, type = 'success') {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.className = `notification ${type} show`;
             
-            // Add click animations to buttons
-            const buttons = document.querySelectorAll('.btn');
-            buttons.forEach(button => {
-                button.addEventListener('click', function(e) {
-                    if (this.getAttribute('href') === '#') {
-                        e.preventDefault();
-                    }
-                    
-                    // Add ripple effect
-                    const ripple = document.createElement('span');
-                    const rect = this.getBoundingClientRect();
-                    const size = Math.max(rect.width, rect.height);
-                    const x = e.clientX - rect.left - size / 2;
-                    const y = e.clientY - rect.top - size / 2;
-                    
-                    ripple.style.cssText = `
-                        position: absolute;
-                        width: ${size}px;
-                        height: ${size}px;
-                        left: ${x}px;
-                        top: ${y}px;
-                        background: rgba(255,255,255,0.3);
-                        border-radius: 50%;
-                        transform: scale(0);
-                        animation: ripple 0.6s ease-out;
-                        pointer-events: none;
-                    `;
-                    
-                    this.style.position = 'relative';
-                    this.style.overflow = 'hidden';
-                    this.appendChild(ripple);
-                    
-                    setTimeout(() => {
-                        ripple.remove();
-                    }, 600);
-                });
-            });
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+
+        // Handle login
+        function handleLogin(e) {
+            e.preventDefault();
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
             
-            // Add CSS for ripple animation
-            const style = document.createElement('style');
-            style.textContent = `
-                @keyframes ripple {
-                    to {
-                        transform: scale(2);
-                        opacity: 0;
-                    }
+            const user = database.users.find(u => u.email === email && u.password === password);
+            
+            if (user) {
+                currentUser = user;
+                document.getElementById('loginModal').style.display = 'none';
+                updateUI();
+                showNotification(`¡Bienvenido, ${user.name}!`);
+                document.getElementById('loginForm').reset();
+            } else {
+                showNotification('Credenciales incorrectas', 'error');
+            }
+        }
+
+        // Handle registration
+        function handleRegister(e) {
+            e.preventDefault();
+            const name = document.getElementById('registerName').value;
+            const email = document.getElementById('registerEmail').value;
+            const password = document.getElementById('registerPassword').value;
+            const plan = document.getElementById('registerPlan').value;
+            
+            // Check if email already exists
+            if (database.users.find(u => u.email === email)) {
+                showNotification('El email ya está registrado', 'error');
+                return;
+            }
+            
+            const newUser = {
+                id: database.users.length + 1,
+                name: name,
+                email: email,
+                password: password,
+                role: plan === 'corporate' ? 'admin' : 'user',
+                plan: plan,
+                avatar: name.charAt(0).toUpperCase()
+            };
+            
+            database.users.push(newUser);
+            currentUser = newUser;
+            
+            document.getElementById('registerModal').style.display = 'none';
+            updateUI();
+            showNotification(`¡Registro exitoso! Bienvenido, ${name}`);
+            document.getElementById('registerForm').reset();
+        }
+
+        // Handle adding news (admin only)
+        function handleAddNews(e) {
+            e.preventDefault();
+            
+            if (!currentUser || (currentUser.role !== 'admin' && currentUser.plan !== 'corporate')) {
+                showNotification('No tienes permisos para agregar noticias', 'error');
+                return;
+            }
+            
+            const title = document.getElementById('newsTitle').value;
+            const category = document.getElementById('newsCategory').value;
+            const excerpt = document.getElementById('newsExcerpt').value;
+            const content = document.getElementById('newsContent').value;
+            const image = document.getElementById('newsImage').value;
+            const author = document.getElementById('newsAuthor').value;
+            
+            const newNews = {
+                id: database.news.length + 1,
+                title: title,
+                category: category,
+                excerpt: excerpt,
+                content: content,
+                image: image,
+                author: author,
+                date: new Date(),
+                views: 0,
+                comments: 0,
+                featured: false
+            };
+            
+            database.news.unshift(newNews);
+            document.getElementById('addNewsModal').style.display = 'none';
+            loadNews();
+            updateAdminPanel();
+            showNotification('¡Noticia publicada exitosamente!');
+            document.getElementById('addNewsForm').reset();
+        }
+
+        // Update UI based on user state
+        function updateUI() {
+            const authButtons = document.querySelector('.auth-buttons');
+            const userPlanInfo = document.getElementById('user-plan-info');
+            const adminPanel = document.getElementById('admin-panel');
+            
+            if (currentUser) {
+                // Update auth buttons
+                authButtons.innerHTML = `
+                    <span style="margin-right: 15px; color: var(--primary-color); font-weight: 500;">
+                        ${currentUser.avatar} ${currentUser.name}
+                    </span>
+                    <button class="btn btn-secondary" onclick="logout()">Cerrar Sesión</button>
+                `;
+                
+                // Update plan info
+                const planNames = {
+                    'free': '🆓 Plan Básico',
+                    'premium': '⭐ Plan Premium',
+                    'corporate': '💎 Plan Corporativo'
+                };
+                
+                userPlanInfo.innerHTML = `
+                    <p>👤 <strong>${currentUser.name}</strong></p>
+                    <p>📋 ${planNames[currentUser.plan]}</p>
+                    <p>📧 ${currentUser.email}</p>
+                    ${currentUser.plan === 'free' ? '<a href="#" class="btn btn-primary" onclick="showPlans()" style="width: 100%; justify-content: center; margin-top: 15px;">Mejorar Plan</a>' : ''}
+                `;
+                
+                // Show admin panel if user is admin or has corporate plan
+                if (currentUser.role === 'admin' || currentUser.plan === 'corporate') {
+                    adminPanel.style.display = 'block';
+                    document.getElementById('user-avatar').textContent = currentUser.avatar;
+                    document.getElementById('user-name').textContent = currentUser.name;
+                    updateAdminPanel();
+                } else {
+                    adminPanel.style.display = 'none';
                 }
-            `;
-            document.head.appendChild(style);
-        });
+            } else {
+                // Reset to guest state
+                authButtons.innerHTML = `
+                    <a href="#" class="btn btn-secondary" onclick="openModal('loginModal')">Iniciar Sesión</a>
+                    <a href="#" class="btn btn-primary" onclick="openModal('registerModal')">Registrarse</a>
+                `;
+                
+                userPlanInfo.innerHTML = `
+                    <p>👤 <strong>Usuario Visitante</strong></p>
+                    <p>📰 Acceso limitado a noticias</p>
+                    <a href="#" class="btn btn-primary" onclick="showPlans()" style="width: 100%; justify-content: center; margin-top: 15px;">Suscribirse Ahora</a>
+                `;
+                
+                adminPanel.style.display = 'none';
+            }
+        }
+
+        // Update admin panel
+        function updateAdminPanel() {
+            const adminNewsList = document.getElementById('admin-news-list');
+            const userNews = database.news.slice(0, 5); // Show last 5 news
+            
+            adminNewsList.innerHTML = userNews.map(news => `
+                <div style="display: flex; justify-content: space-between; align-items: center; padding: 15px; border-bottom: 1px solid var(--border-color); background-color: var(--white); margin-bottom: 10px; border-radius: 8px;">
+                    <div>
+                        <h4 style="margin-bottom: 5px;">${news.title}</h4>
+                        <p style="font-size: 12px; color: #666;">
+                            ${getCategoryName(news.category)} • ${getTimeAgo(news.date)} • ${news.views} vistas
+                        </p>
+                    </div>
+                    <div style="display: flex; gap: 10px;">
+                        <button class="btn btn-secondary" onclick="editNews(${news.id})" style="padding: 5px 10px; font-size: 12px;">✏️ Editar</button>
+                        <button class="btn" onclick="deleteNews(${news.id})" style="padding: 5px 10px; font-size: 12px; background-color: #dc3545; color: white;">🗑️ Eliminar</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Logout function
+        function logout() {
+            currentUser = null;
+            updateUI();
+            showNotification('Sesión cerrada correctamente');
+        }
+
+        // Subscribe to plan
+        function subscribeToPlan(planType) {
+            if (!currentUser) {
+                openModal('registerModal');
+                return;
+            }
+            
+            const planNames = {
+                'premium': 'Premium',
+                'corporate': 'Corporativo'
+            };
+            
+            // Simulate subscription
+            currentUser.plan = planType;
+            if (planType === 'corporate') {
+                currentUser.role = 'admin';
+            }
+            
+            updateUI();
+            showNotification(`¡Te has suscrito al plan ${planNames[planType]}!`);
+        }
+
+        // Read article (simulate)
+        function readArticle(newsId) {
+            const news = database.news.find(n => n.id === newsId);
+            if (news) {
+                // Simulate reading - increment views
+                news.views = (news.views || 0) + 1;
+                
+                // Check if user can read full article based on plan
+                if (!currentUser || currentUser.plan === 'free') {
+                    alert(`📰 ${news.title}\n\n${news.excerpt}\n\n🔒 Suscríbete para leer el artículo completo y acceder a contenido exclusivo.`);
+                    showPlans();
+                } else {
+                    alert(`📰 ${news.title}\n\n${news.content}\n\n👤 Por: ${news.author}\n📅 ${getTimeAgo(news.date)}`);
+                }
+                
+                loadNews(); // Refresh to show updated view count
+            }
+        }
+
+        // Show plans section
+        function showPlans() {
+            document.getElementById('plans-section').scrollIntoView({ 
+                behavior: 'smooth' 
+            });
+        }
+
+        // Show section (simulate navigation)
+        function showSection(section) {
+            const sectionNames = {
+                'home': 'Inicio',
+                'politics': 'Política',
+                'economy': 'Economía', 
+                'sports': 'Deportes',
+                'culture': 'Cultura'
+            };
+            
+            showNotification(`Navegando a: ${sectionNames[section]}`);
+        }
+
+        // Admin functions
+        function viewAnalytics() {
+            if (currentUser && (currentUser.role === 'admin' || currentUser.plan === 'corporate')) {
+                const totalNews = database.news.length;
+                const totalViews = database.news.reduce((sum, news) => sum + (news.views || 0), 0);
+                const totalUsers = database.users.length;
+                
+                alert(`📊 Analytics Dashboard\n\n📰 Total de noticias: ${totalNews}\n👁️ Total de vistas: ${totalViews.toLocaleString()}\n👥 Total de usuarios: ${totalUsers}\n📈 Promedio de vistas: ${Math.round(totalViews / totalNews).toLocaleString()}`);
+            }
+        }
+
+        function manageUsers() {
+            if (currentUser && (currentUser.role === 'admin' || currentUser.plan === 'corporate')) {
+                const usersList = database.users.map(user => 
+                    `👤 ${user.name} (${user.email}) - ${user.plan.toUpperCase()}`
+                ).join('\n');
+                
+                alert(`👥 Gestión de Usuarios\n\n${usersList}`);
+            }
+        }
+
+        function moderateComments() {
+            if (currentUser && (currentUser.role === 'admin' || currentUser.plan === 'corporate')) {
+                alert('💬 Sistema de moderación de comentarios\n\n📝 Comentarios pendientes: 12\n✅ Comentarios aprobados: 1,847\n❌ Comentarios rechazados: 23');
+            }
+        }
+
+        function editNews(newsId) {
+            const news = database.news.find(n => n.id === newsId);
+            if (news && currentUser && (currentUser.role === 'admin' || currentUser.plan === 'corporate')) {
+                // Pre-fill the add news form with existing data
+                document.getElementById('newsTitle').value = news.title;
+                document.getElementById('newsCategory').value = news.category;
+                document.getElementById('newsExcerpt').value = news.excerpt;
+                document.getElementById('newsContent').value = news.content;
+                document.getElementById('newsImage').value = news.image;
+                document.getElementById('newsAuthor').value = news.author;
+                
+                openModal('addNewsModal');
+                showNotification('Editando noticia...');
+            }
+        }
+
+        function deleteNews(newsId) {
+            if (currentUser && (currentUser.role === 'admin' || currentUser.plan === 'corporate')) {
+                if (confirm('¿Estás seguro de que quieres eliminar esta noticia?')) {
+                    database.news = database.news.filter(n => n.id !== newsId);
+                    loadNews();
+                    updateAdminPanel();
+                    showNotification('Noticia eliminada correctamente');
+                }
+            }
+        }
+
+        // Auto-update time every minute
+        setInterval(() => {
+            loadNews(); // Refresh to update time ago
+        }, 60000);
 
         // Simulate real-time updates
         setInterval(() => {
-            const articles = document.querySelectorAll('.article-card .meta');
-            articles.forEach(meta => {
-                if (meta.textContent.includes('Hace')) {
-                    const timeMatch = meta.textContent.match(/Hace (\d+) horas?/);
-                    if (timeMatch) {
-                        const hours = parseInt(timeMatch[1]);
-                        if (Math.random() < 0.1) { // 10% chance to update
-                            meta.innerHTML = meta.innerHTML.replace(`Hace ${hours} horas?`, `Hace ${hours + 1} horas`);
-                        }
-                    }
+            // Randomly update view counts
+            database.news.forEach(news => {
+                if (Math.random() < 0.3) { // 30% chance
+                    news.views = (news.views || 0) + Math.floor(Math.random() * 5) + 1;
                 }
             });
-        }, 60000); // Update every minute
+        }, 30000); // Every 30 seconds
     </script>
 </body>
 </html>
